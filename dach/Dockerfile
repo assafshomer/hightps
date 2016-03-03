@@ -16,3 +16,7 @@ RUN apt-get install -y --force-yes openjdk-8-jdk openjdk-8-doc
 RUN git clone https://github.com/DigitalAssetCom/hlp-candidate.git hyperledger
 WORKDIR "hyperledger/"
 RUN mvn clean package
+RUN package=$(ls server/pbft/target | grep dist) && cp "server/pbft/target/"$package ../ && tar zxf ../$package -C ../
+WORKDIR "../"
+RUN rm -f $(ls | grep .gz)
+RUN hdir=$(ls | grep server) && cd $hdir"/" && cat conf/application.conf
