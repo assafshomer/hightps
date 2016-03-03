@@ -12,3 +12,7 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | \
   sudo debconf-set-selections  
 RUN apt-get install -y --force-yes oracle-java8-installer 
 RUN apt-get install -y --force-yes oracle-java8-unlimited-jce-policy protobuf-compiler procmail
+RUN apt-get install -y --force-yes openjdk-8-jdk openjdk-8-doc 
+RUN git clone https://github.com/DigitalAssetCom/hlp-candidate.git hyperledger
+WORKDIR "hyperledger/"
+RUN mvn clean package
