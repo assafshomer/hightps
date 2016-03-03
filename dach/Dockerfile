@@ -19,4 +19,7 @@ RUN mvn clean package
 RUN package=$(ls server/pbft/target | grep dist) && cp "server/pbft/target/"$package ../ && tar zxf ../$package -C ../
 WORKDIR "../"
 RUN rm -f $(ls | grep .gz)
-RUN hdir=$(ls | grep server) && cd $hdir"/" && cat conf/application.conf
+RUN apt-get install nano
+ENV TERM xterm
+ADD colu.conf .
+RUN hdir=$(ls | grep server) && cd $hdir"/" && cp ../colu.conf conf/ &&  ./start.sh conf/colu.conf
