@@ -48,3 +48,9 @@ To use the [CLI](https://github.com/openblockchain/obc-docs/blob/master/api/Open
 	curl localhost:5000/network/peers
 	curl localhost:5000/transactions/bb540edfc1ee2ac0f5e2ec6000677f4cd1c6728046d5e32dede7fea11a42f86a6943b76a8f9154f4792032551ed320871ff7b7076047e4184292e03421889c
 ```
+
+I also **deployed** the chaincode
+```
+	./obc-peer chaincode deploy -u jim -p github.com/openblockchain/obc-peer/openchain/example/chaincode/chaincode_example02 -c '{"Function":"init", "Args": ["a","100", "b", "200"]}'
+```
+This seems to be the equivalnet of making a tx on Bitcoin. A new block was *mined* with this tx (one tx for block?) 
